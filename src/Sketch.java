@@ -45,11 +45,28 @@ public class Sketch extends PApplet {
     fill(110, 115, 100);
     rect(0,300,1000,60);
 
+    // int[] yArray = {100, 160, 220, 280, 340, 460, 520};
+    // String[] sounds = {"hi-hat", "snare", "kick", "bass", "synthPlusOne", "synth", "synthMinusOne"};
+
+    boolean[][] grid = new boolean[3][3];
+
+    for (int i = 0; i < grid.length; i++) {
+        if(grid[i] == true) {
+            fill(0,255,0);
+        } else {
+            fill(255,255,255);
+        }
+    }
+
     }
 
     @Override
     public void draw() {
+        
+    }
 
+    public void mousePressed(){
+        System.out.println("mouse clicked at: " + mouseX + ", " + mouseY);
     }
 
     /** Additional helper methods below */
