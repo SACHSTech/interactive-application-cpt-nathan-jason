@@ -8,7 +8,7 @@ public class Sketch extends PApplet {
 
     int columns = 15;
     int rows = 8;
-    boolean[][] grid = new boolean[columns][rows]
+    boolean[][] grid = new boolean[columns][rows];
 
     public static void main(String[] args) {
         PApplet.main("Sketch");
@@ -30,31 +30,10 @@ public class Sketch extends PApplet {
         }
 
     
-    }
-    noStroke();
-    fill(110, 115, 100);
-    rect(0,300,1000,60);
+    
 
     // int[] yArray = {100, 160, 220, 280, 340, 460, 520};
     String[] sounds = {"hi-hat.wav", "snare.wav", "kick.wav", "bass.wav", "synthPlusOne.wav", "synth.wav", "synthMinusOne.wav"};
-
-    boolean[][] grid = new boolean[3][3];
-
-    for (int i = 0; i < grid.length; i++) {
-        if(grid[i]) {
-            fill(0,255,0);
-        } else {
-            fill(255,255,255);
-        }
-
-    public void mousePressed(MouseEvent e) {
-           playAudio("kick.wav");
-           if (mousePressed) {
-           playAudio("kick.wav");
-           } 
-        }
-        
-    
 
     @Override
     public void draw() {
@@ -76,8 +55,7 @@ public class Sketch extends PApplet {
         text("Synth",10, 460);
         text("Synth -1",10, 520);
 
-        stroke(0);
-
+    stroke(0);
     for (int c = 0; c < columns; c++) {
       for (int r = 0; r < rows; r++) {
        
@@ -90,27 +68,41 @@ public class Sketch extends PApplet {
        
         // Positions match your original design layout
         square(100 + (c * 60), 65 + (r * 60), 50);
+
+        noStroke();
+        fill(110,115,100);
+        rect(0,305,1000,50);
       }
     }
   }
 
-    }
 
     public void mousePressed(){
-        System.out.println("mouse clicked at: " + mouseX + ", " + mouseY);
+        // Convert click position into grid index coordinates
+    int c = (mouseX - 100) / 60;
+    int r = (mouseY - 65) / 60;
 
-        if (mouseY < 500) {
-            playAudio("snare.wav");
-        } else if (mouseY > 501) {
-            playAudio("kick.wav");
-        }
+
+    System.out.println(c + "," + r);
+
+
+    // Check if the click landed inside grid boundaries
+    if (c >= 0 && c < columns && r >= 0 && r < rows) {
+     
+      // Check if mouse is inside boundary of square
+      int squareX = 100 + (c * 60);
+      int squareY = 65 + (r * 60);
+     
+      if (mouseX >= squareX && mouseX <= squareX + 50 &&
+          mouseY >= squareY && mouseY <= squareY + 50) {
+           
+        // Switches the square to true or false
+        grid[c][r] = !grid[c][r];
+      }
     }
+  }
+}
 
-    /** Additional helper methods below */
-    private void playAudio(String fileName) {
 
-        System.out.println("Now playing: " + fileName);
-
-    }
 
 
