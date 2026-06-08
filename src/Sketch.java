@@ -2,84 +2,87 @@ import processing.core.PApplet;
 
 /**
  * Template for programs with Processing graphics output.
- * @author Your Name
+ * @author Nathan and Jason
  */
+
+// We switched beat maker to patern maker
 public class Sketch extends PApplet {
+  int columns = 16;
+  int rows = 8;
+  int[][] grid = new int[columns][rows];
 
-    int columns = 15;
-    int rows = 8;
-    boolean[][] grid = new boolean[columns][rows];
 
-    public static void main(String[] args) {
-        PApplet.main("Sketch");
+  public static void main(String[] args) {
+    PApplet.main("Sketch");
+  }
+
+
+
+  public void settings() {
+    size(1000, 600);
+  }
+
+
+  public void setup() {
+    // Sets up the columns and rows
+    for (int c = 0; c < columns; c++) {
+      for (int r = 0; r < rows; r++) {
+      }
     }
+  }
 
-    @Override
-    public void settings() {
-        size(1000, 600); 
-    }
+  public void draw() {
+    background(110, 115, 100);
 
-    @Override
-    public void setup() {
-        
-        for (int c = 0; c < columns; c++) {
-            for (int r = 0; r < rows; r++) {
-                grid[c][r] = false;
-                }
-            }
-        }
 
-    
-    
+    // Base UI
+    fill(62, 64, 58);
+    rect(0, 0, 1000, 50);
+    fill(255);
+    textSize(30);
+    text("Pattern Maker 3000", 400, 35);
 
-    // int[] yArray = {100, 160, 220, 280, 340, 460, 520};
-    String[] sounds = {"hi-hat.wav", "snare.wav", "kick.wav", "bass.wav", "synthPlusOne.wav", "synth.wav", "synthMinusOne.wav"};
 
-    @Override
-    public void draw() {
-        background(110, 115, 100);
-        fill(62, 64, 58);
-        rect(0,0,1000,50);
-        fill(255);
-        circle(150,27,37);
-        fill(62, 64, 58);
-        triangle(165,26,140,13,140,40);
-        fill(255);
-        textSize(24);
-        text("FL Studio",30, 35);
-        text("Hi Hat",10, 100);
-        text("Snare",10, 160);
-        text("Kick",10, 220);
-        text("Bass",10, 280);
-        text("Synth +1",10, 400);
-        text("Synth",10, 460);
-        text("Synth -1",10, 520);
+    fill(255);
+    textSize(24);
+    text("Click on the squares to cycle through the colors", 260,560);
+   
 
-    stroke(0);
+
+    // Creates the squares
+    stroke(1);
     for (int c = 0; c < columns; c++) {
       for (int r = 0; r < rows; r++) {
        
-        // Color choice based on grid state
-        if (grid[c][r]) {
-          fill(255, 0, 0); // Red = active
-        } else {
-          fill(255);       // White = inactive
+        // Color choice based on grid number
+        if (grid[c][r] == 0) {
+          fill(255); // White
+        } else if (grid[c][r] == 1) {
+          fill(246,0,0);       // Red
+        } else if (grid[c][r] == 2) {
+          fill(255, 140, 0); // Orange
+        } else if (grid[c][r] == 3) {
+          fill(255, 238, 0); // Yellow
+        } else if (grid[c][r] == 4) {
+          fill(77, 233, 76); // Green
+        } else if (grid[c][r] == 5) {
+          fill(55, 131, 255); // Blue
+        } else if (grid[c][r] == 6) {
+          fill(72, 21, 170); // Purple
         }
        
-        // Positions match your original design layout
-        square(100 + (c * 60), 65 + (r * 60), 50);
+        // creates gaps between squares
+        square(20 + (c * 60), 65 + (r * 60), 50);
 
-        noStroke();
-        fill(110,115,100);
-        rect(0,305,1000,50);
+
       }
     }
   }
 
 
-    public void mousePressed(){
-        // Convert click position into grid index coordinates
-    int c = (mouseX - 100) / 60;
+  public void mousePressed() {
+    // Convert click position into grid number coordinates
+    int c = (mouseX - 20) / 60;
     int r = (mouseY - 65) / 60;
 
 
@@ -89,20 +92,23 @@ public class Sketch extends PApplet {
     // Check if the click landed inside grid boundaries
     if (c >= 0 && c < columns && r >= 0 && r < rows) {
      
-      // Check if mouse is inside boundary of square
-      int squareX = 100 + (c * 60);
+      // Calculates square posiition based on the column and row number
+      int squareX = 20 + (c * 60);
       int squareY = 65 + (r * 60);
      
       if (mouseX >= squareX && mouseX <= squareX + 50 &&
-          mouseY >= squareY && mouseY <= squareY + 50) {
+          mouseY >= squareY && mouseY <= squareY + 50) { // Runs when click position is within boundary
            
-        // Switches the square to true or false
-        grid[c][r] = !grid[c][r];
+        // Moves to the next color after every click
+        grid[c][r] = grid[c][r] + 1;
+
+
+        if (grid[c][r] > 6) {
+          grid[c][r] = 0; // Limits the cycle by 6 colors and resets when it goes past
+        }
       }
     }
   }
 }
-
-
 
 
