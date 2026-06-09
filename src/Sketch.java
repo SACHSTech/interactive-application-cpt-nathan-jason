@@ -5,7 +5,7 @@ import processing.core.PApplet;
  * @author Nathan and Jason
  */
 
-// We switched beat maker to patern maker
+// We switched beat maker to pattern maker
 public class Sketch extends PApplet {
   int columns = 16;
   int rows = 8;
@@ -16,19 +16,8 @@ public class Sketch extends PApplet {
     PApplet.main("Sketch");
   }
 
-
-
   public void settings() {
     size(1000, 600);
-  }
-
-
-  public void setup() {
-    // Sets up the columns and rows
-    for (int c = 0; c < columns; c++) {
-      for (int r = 0; r < rows; r++) {
-      }
-    }
   }
 
   public void draw() {
@@ -75,19 +64,14 @@ public class Sketch extends PApplet {
        
         // creates gaps between squares
         square(20 + (c * 60), 65 + (r * 60), 50);
-
-
       }
     }
   }
-
-
 
   public void mousePressed() {
     // Convert click position into grid number coordinates
     int c = (mouseX - 20) / 60;
     int r = (mouseY - 65) / 60;
-
 
     System.out.println(c + "," + r);
 
@@ -113,5 +97,3 @@ public class Sketch extends PApplet {
     }
   }
 }
-
-
