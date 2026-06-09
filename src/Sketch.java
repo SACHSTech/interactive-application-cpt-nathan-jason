@@ -33,8 +33,11 @@ public class Sketch extends PApplet {
 
   public void draw() {
     background(110, 115, 100);
+    drawUi();
+    drawSquares();
+  }
 
-
+  public void drawUi(){
     // Base UI
     fill(62, 64, 58);
     rect(0, 0, 1000, 50);
@@ -42,13 +45,12 @@ public class Sketch extends PApplet {
     textSize(30);
     text("Pattern Maker 3000", 400, 35);
 
-
     fill(255);
     textSize(24);
     text("Click on the squares to cycle through the colors", 260,560);
-   
+  }
 
-
+  public void drawSquares(){
     // Creates the squares
     stroke(1);
     for (int c = 0; c < columns; c++) {
@@ -78,6 +80,7 @@ public class Sketch extends PApplet {
       }
     }
   }
+
 
 
   public void mousePressed() {

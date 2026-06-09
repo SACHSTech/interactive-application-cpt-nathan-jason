@@ -10,10 +10,30 @@ Assessment criteria for this project are described in **[ASSESSMENT.md](ASSESSME
 
 Once you are ready to submit, replace the contents of this README.md file with:
 
-- a screenshot of your program in action
-- a brief description of your program
-- how the user interacts with it
-- any known limitations or incomplete features
-- an attribution section for any external assets used
+
+
+
+-- Screenshot of program -- 
+
+![screenshot](image-1.png)
+
+-- Description --
+
+The program features a grid of squares which allows the user to click each square to change colours, and clicking the squares multiple times cycles through an arrangement of colours. 
+
+-- User interaction -- 
+
+The user is encouraged to have fun and make different patterns/designs
+
+-- Limitations and incomplete features --
+
+Program has to be restarted to be able to clear the canvas, no abillity to erase, and inefficient to cycle through colours.
+
+-- Attribution -- 
+
+No external assets
+
+
+
 
 This README will be assessed as part of the project professionalism mark.
